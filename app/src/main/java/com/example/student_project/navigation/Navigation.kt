@@ -16,34 +16,18 @@ import com.example.student_project.screen.SplashScreen
 
 @Composable
 fun Navigation() {
-val navController  = rememberNavController()
-    //start from splash
+    val navController = rememberNavController()
+    // start from splash
     NavHost(navController = navController, startDestination = "splash_screen") {
-        composable(Screens.SplashScreen.route){
-            SplashScreen(navController)
-        }
-        composable(Screens.SignupScreen.route){
-            SignUpScreen(navController)
-        }
-        composable(Screens.LoginScreen.route){
-            LoginScreen(navController)
-        }
-        composable(Screens.NameAndEmailScreen.route){
-            NameAndEmailScreen( navController)
-        }
-        composable(Screens.AdditionalInfoScreen.route){
+        composable(Screens.SplashScreen.route) { SplashScreen(navController) }
+        composable(Screens.SignupScreen.route) { SignUpScreen(navController) }
+        composable(Screens.LoginScreen.route) { LoginScreen(navController) }
+        composable(Screens.NameAndEmailScreen.route) { NameAndEmailScreen(navController) }
+        composable(Screens.AdditionalInfoScreen.route) {
             AdditionalInfoScreen(navController = navController)
         }
-        composable(Screens.HomeScreen.route){
-            HomeScreen(navController = navController)
-        }
-        composable(Screens.LearningScreen.route){
-            LearningScreen(navController = navController)
-        }
-        composable(Screens.ProfileScreen.route){
-            ProfileScreen(navController = navController)
-        }
-
-
+        composable(Screens.HomeScreen.route) { HomeScreen(navController = navController) }
+        composable(Screens.LearningScreen.route) { LearningScreen(navController = navController) }
+        composable(Screens.ProfileScreen.route) { ProfileScreen(navController = navController) }
     }
 }

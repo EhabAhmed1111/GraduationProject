@@ -37,144 +37,104 @@ import com.example.student_project.R
 
 @Composable
 fun NameAndEmailScreen(navController: NavController) {
-    var firstNameState by remember {
-        mutableStateOf("")
-    }
-    var lastNameState by remember {
-        mutableStateOf("")
-    }
-    var emailState by remember {
-        mutableStateOf("")
-    }
+    var firstNameState by remember { mutableStateOf("") }
+    var lastNameState by remember { mutableStateOf("") }
+    var emailState by remember { mutableStateOf("") }
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
+        Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
             Text(
                 text = "Enter name and email",
                 style = MaterialTheme.typography.headlineLarge,
                 fontSize = 30.sp,
                 color = Color.Black,
-                modifier = Modifier
-                    .padding(top = 75.dp)
-                    .align(Alignment.TopCenter)
+                modifier = Modifier.padding(top = 75.dp).align(Alignment.TopCenter),
             )
-            Column(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .fillMaxWidth()
-            ) {
-
+            Column(modifier = Modifier.align(Alignment.Center).fillMaxWidth()) {
                 Row {
                     TextField(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .padding(10.dp),
+                        modifier = Modifier.weight(0.5f).padding(10.dp),
                         value = firstNameState,
-                        onValueChange = {
-                            firstNameState = it
-                        },
+                        onValueChange = { firstNameState = it },
                         label = { Text(text = "first name") },
-                        colors = TextFieldDefaults.colors(
-                            unfocusedContainerColor = Color.Transparent,
-                            focusedContainerColor = Color.Transparent
-                        )
+                        colors =
+                            TextFieldDefaults.colors(
+                                unfocusedContainerColor = Color.Transparent,
+                                focusedContainerColor = Color.Transparent,
+                            ),
                     )
                     TextField(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .padding(10.dp),
+                        modifier = Modifier.weight(0.5f).padding(10.dp),
                         value = lastNameState,
-                        onValueChange = {
-                            lastNameState = it
-                        },
+                        onValueChange = { lastNameState = it },
                         label = { Text(text = "last name") },
-                        colors = TextFieldDefaults.colors(
-                            unfocusedContainerColor = Color.Transparent,
-                            focusedContainerColor = Color.Transparent
-                        )
+                        colors =
+                            TextFieldDefaults.colors(
+                                unfocusedContainerColor = Color.Transparent,
+                                focusedContainerColor = Color.Transparent,
+                            ),
                     )
                 }
                 TextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp),
+                    modifier = Modifier.fillMaxWidth().padding(10.dp),
                     value = emailState,
-                    onValueChange = {
-                        emailState = it
-                    },
+                    onValueChange = { emailState = it },
                     label = { Text(text = "email") },
                     leadingIcon = {
                         Image(
                             painter = painterResource(id = R.drawable.baseline_email_24),
-                            contentDescription = null
+                            contentDescription = null,
                         )
                     },
-                    colors = TextFieldDefaults.colors(
-                        unfocusedContainerColor = Color.Transparent,
-                        focusedContainerColor = Color.Transparent
-                    )
+                    colors =
+                        TextFieldDefaults.colors(
+                            unfocusedContainerColor = Color.Transparent,
+                            focusedContainerColor = Color.Transparent,
+                        ),
                 )
                 Row(modifier = Modifier.align(Alignment.End)) {
                     Text(text = "Already have an account?", fontSize = 10.sp)
                     Button(
                         onClick = { navController.navigate(Screens.LoginScreen.route) },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(
-                                id = R.color.light_green
-                            )
-                        )
+                        colors =
+                            ButtonDefaults.buttonColors(
+                                containerColor = colorResource(id = R.color.light_green)
+                            ),
                     ) {
                         Text(text = "login")
                     }
                 }
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(20.dp)
-                )
+                Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
-                        //here will be nav with parameter
+                        // here will be nav with parameter
                         navController.navigate(Screens.SignupScreen.route)
-                    }, shape = RoundedCornerShape(10.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(
-                            id = R.color.light_green
-                        )
-                    )
+                    },
+                    shape = RoundedCornerShape(10.dp),
+                    colors =
+                        ButtonDefaults.buttonColors(
+                            containerColor = colorResource(id = R.color.light_green)
+                        ),
                 ) {
                     Text(text = "Continue")
                 }
             }
-            Column(
-                modifier = Modifier.align(Alignment.BottomCenter)
-            ) {
+            Column(modifier = Modifier.align(Alignment.BottomCenter)) {
                 Text(
-                    modifier = Modifier
-                        .padding(bottom = 50.dp)
-                        .align(Alignment.CenterHorizontally),
-                    text = "Or sign up with social account"
+                    modifier = Modifier.padding(bottom = 50.dp).align(Alignment.CenterHorizontally),
+                    text = "Or sign up with social account",
                 )
 
                 Button(
-                    modifier = Modifier
-                        .padding(bottom = 20.dp)
-                        .border(
-                            2.dp, Color.Black,
-                            RectangleShape
-                        ), onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        Color.Transparent
-                    )
+                    modifier =
+                        Modifier.padding(bottom = 20.dp).border(2.dp, Color.Black, RectangleShape),
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
                 ) {
                     Row {
                         Image(
                             painter = painterResource(id = R.drawable.google_img),
-                            contentDescription = null
+                            contentDescription = null,
                         )
                         Spacer(modifier = Modifier.width(5.dp))
                         Text(text = "Continue with google", color = Color.Black)

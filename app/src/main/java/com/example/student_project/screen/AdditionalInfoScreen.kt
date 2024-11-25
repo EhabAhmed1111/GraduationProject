@@ -35,9 +35,7 @@ import androidx.navigation.NavController
 import com.example.student_project.R
 
 @Composable
-fun AdditionalInfoScreen(
-    navController: NavController
-) {
+fun AdditionalInfoScreen(navController: NavController) {
     DropDown(navController)
 }
 
@@ -46,46 +44,31 @@ fun AdditionalInfoScreen(
 fun DropDown(navController: NavController) {
     val major = listOf("cs", "it", "other")
     val university = listOf("tanta", "other")
-    var isExpandedForMajor by remember {
-        mutableStateOf(false)
-    }
-    var isExpandedForUniversity by remember {
-        mutableStateOf(false)
-    }
-    var universityChoiceState by remember {
-        mutableStateOf("Pick your University")
-    }
-    var majorChoiceState by remember {
-        mutableStateOf("Major")
-    }
-
+    var isExpandedForMajor by remember { mutableStateOf(false) }
+    var isExpandedForUniversity by remember { mutableStateOf(false) }
+    var universityChoiceState by remember { mutableStateOf("Pick your University") }
+    var majorChoiceState by remember { mutableStateOf("Major") }
 
     Box(modifier = Modifier.fillMaxSize()) {
-
         Text(
             text = "Your Education",
             style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier
-                .align(alignment = Alignment.TopCenter)
-                .padding(75.dp)
+            modifier = Modifier.align(alignment = Alignment.TopCenter).padding(75.dp),
         )
         Text(
             text = "provide Your Educational information",
             style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier
-                .align(alignment = Alignment.TopCenter)
-                .padding(top = 100.dp)
+            modifier = Modifier.align(alignment = Alignment.TopCenter).padding(top = 100.dp),
         )
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
-
-
             ExposedDropdownMenuBox(
                 expanded = isExpandedForMajor,
-                onExpandedChange = { isExpandedForMajor = !isExpandedForMajor }) {
+                onExpandedChange = { isExpandedForMajor = !isExpandedForMajor },
+            ) {
                 TextField(
                     value = majorChoiceState,
                     onValueChange = { majorChoiceState = it },
@@ -93,43 +76,36 @@ fun DropDown(navController: NavController) {
                     trailingIcon = {
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedForMajor)
                     },
-                    colors = ExposedDropdownMenuDefaults.textFieldColors(
-                        unfocusedContainerColor = Color.Transparent,
-                        focusedContainerColor = Color.Transparent
-                    ),
-                    modifier = Modifier
-                        .menuAnchor()
-                        .width(350.dp)
-                        .border(
-                            1.dp, Color.Gray,
-                            RoundedCornerShape(10.dp)
-                        )
-
+                    colors =
+                        ExposedDropdownMenuDefaults.textFieldColors(
+                            unfocusedContainerColor = Color.Transparent,
+                            focusedContainerColor = Color.Transparent,
+                        ),
+                    modifier =
+                        Modifier.menuAnchor()
+                            .width(350.dp)
+                            .border(1.dp, Color.Gray, RoundedCornerShape(10.dp)),
                 )
                 ExposedDropdownMenu(
                     expanded = isExpandedForMajor,
-                    onDismissRequest = { isExpandedForMajor = false }) {
+                    onDismissRequest = { isExpandedForMajor = false },
+                ) {
                     major.forEachIndexed { index, text ->
-
                         DropdownMenuItem(
-
                             text = { Text(text = text) },
                             onClick = {
                                 majorChoiceState = major[index]
                                 isExpandedForMajor = false
-                            }
+                            },
                         )
                     }
                 }
             }
-            Spacer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(20.dp)
-            )
+            Spacer(modifier = Modifier.fillMaxWidth().height(20.dp))
             ExposedDropdownMenuBox(
                 expanded = isExpandedForUniversity,
-                onExpandedChange = { isExpandedForUniversity = !isExpandedForUniversity }) {
+                onExpandedChange = { isExpandedForUniversity = !isExpandedForUniversity },
+            ) {
                 TextField(
                     value = universityChoiceState,
                     onValueChange = {},
@@ -137,60 +113,49 @@ fun DropDown(navController: NavController) {
                     trailingIcon = {
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedForUniversity)
                     },
-                    colors = ExposedDropdownMenuDefaults.textFieldColors(
-                        unfocusedContainerColor = Color.Transparent,
-                        focusedContainerColor = Color.Transparent
-                    ),
-                    modifier = Modifier
-                        .menuAnchor()
-                        .width(350.dp)
-                        .border(
-                            1.dp, Color.Gray,
-                            RoundedCornerShape(10.dp)
-                        )
-
+                    colors =
+                        ExposedDropdownMenuDefaults.textFieldColors(
+                            unfocusedContainerColor = Color.Transparent,
+                            focusedContainerColor = Color.Transparent,
+                        ),
+                    modifier =
+                        Modifier.menuAnchor()
+                            .width(350.dp)
+                            .border(1.dp, Color.Gray, RoundedCornerShape(10.dp)),
                 )
                 ExposedDropdownMenu(
                     expanded = isExpandedForUniversity,
-                    onDismissRequest = { isExpandedForUniversity = false }) {
+                    onDismissRequest = { isExpandedForUniversity = false },
+                ) {
                     university.forEachIndexed { index, text ->
-
                         DropdownMenuItem(
-
                             text = { Text(text = text) },
                             onClick = {
                                 universityChoiceState = university[index]
                                 isExpandedForUniversity = false
-                            }
+                            },
                         )
                     }
                 }
             }
-            Spacer(
-                modifier = Modifier
-                    .width(327.dp)
-                    .height(44.dp)
-            )
+            Spacer(modifier = Modifier.width(327.dp).height(44.dp))
             Button(
                 onClick = {
-                    //there will be code to send data to back
-                    //this data is the state of university and major
-//will nav to dashboard screen
+                    // there will be code to send data to back
+                    // this data is the state of university and major
+                    // will nav to dashboard screen
 
                     navController.navigate(Screens.HomeScreen.route)
-                }, shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = colorResource(
-                        id = R.color.light_green
-                    )
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
+                },
+                shape = RoundedCornerShape(10.dp),
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = colorResource(id = R.color.light_green)
+                    ),
+                modifier = Modifier.fillMaxWidth().height(50.dp),
             ) {
                 Text(text = "Continue", fontSize = 20.sp)
             }
         }
     }
-
 }

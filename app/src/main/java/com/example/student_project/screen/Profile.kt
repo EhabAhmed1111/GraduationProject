@@ -15,19 +15,11 @@ import androidx.navigation.NavController
 
 @Composable
 fun ProfileScreen(navController: NavController) {
-    val selectedItemIndex by rememberSaveable {
-        mutableStateOf(2)
-    }
+    val selectedItemIndex by rememberSaveable { mutableStateOf(2) }
     Scaffold(
-        Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        bottomBar = {
-            BottomNavBar(selectedItemIndex, navController)
-        }
+        Modifier.fillMaxSize().background(Color.White),
+        bottomBar = { BottomNavBar(selectedItemIndex, navController) },
     ) { innerPadding ->
-        Column(Modifier.padding(innerPadding)) {
-
-        }
+        Column(Modifier.padding(innerPadding)) {}
     }
 }
